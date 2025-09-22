@@ -6,8 +6,6 @@ from astrbot.api import logger, AstrBotConfig
 from astrbot.core.platform.sources.aiocqhttp.aiocqhttp_message_event import AiocqhttpMessageEvent
 import time
 
-@register("群成员查询", "糯米茨", "[仅aiocqhttp]About
-[仅aiocqhttp]群成员查询工具，用于获取群成员的群昵称、QQ名称、QQ号、群内身份，返回给LLM的工具", "v0.1.0", "https://github.com/nuomicici/astrbot_plugin_GroupMemberQuery")
 class GroupMemberTool(Star):
     """
     AstrBot 群成员信息获取插件
