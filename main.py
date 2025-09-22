@@ -15,7 +15,7 @@ class GroupMemberTool(Star):
     def __init__(self, context: Context, config: AstrBotConfig = None):
         """插件初始化"""
         super().__init__(context)
-        logger.info("群成员查询插件已加载")
+        logger.info("群成员查询插件已加载。帮助命令塞了点私货，可以自己到/AstrBot/data/plugins/astrbot_plugin_GroupMemberQuery文件夹修改main文件删除")
 
     @filter.llm_tool(name="get_group_members_info")
     async def get_group_members(self, event: AstrMessageEvent) -> str:
@@ -149,7 +149,7 @@ class GroupMemberTool(Star):
     @filter.command("群成员帮助")
     async def help_command(self, event: AstrMessageEvent) -> AsyncGenerator[MessageEventResult, None]:
         """显示插件帮助信息"""
-        help_text = """===Astrbot 群成员插件===\nv0.1.1 by 糯米茨\n\n- 当你询问"群里有哪些人"、"这个群有多少成员"等问题时，LLM会自动调用此工具\n- 工具会返回群成员的信息数组（包括群昵称、用户名、QQ号）\n- 目前仅支持QQ群聊使用\n\n可用命令：\n- 测试群成员：手动调用工具查看格式化的成员列表"""
+        help_text = """===Astrbot 群成员插件===\nv0.1.0 by 糯米茨(3218444911)\n\n- 当你询问"群里有哪些人"、"这个群有多少成员"等问题时，LLM会自动调用此工具\n- 工具会返回群成员的信息数组（包括群昵称、用户名、QQ号）\n- 目前仅支持QQ群聊使用\n\n可用命令：\n- 测试群成员：手动调用工具查看格式化的成员列表"""
         yield event.plain_result(help_text)
 
     async def terminate(self) -> None:
