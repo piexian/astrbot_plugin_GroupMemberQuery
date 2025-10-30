@@ -16,12 +16,15 @@ class GroupMemberTool(Star):
         logger.info("群成员查询插件已加载。帮助命令塞了点私货，可以自己到/AstrBot/data/plugins/astrbot_plugin_GroupMemberQuery文件夹修改main文件删除")
 
     @filter.llm_tool(name="get_group_members_info")
-    async def get_group_members(self, event: AstrMessageEvent) -> str:
+    async def get_group_members(self, event: AstrMessageEvent, query: str = "") -> str:
         """
         获取QQ群成员信息的LLM工具。
         需要判断是否为群聊时，以及当需要知道群里有哪些人，或者需要获取他们的昵称和用户ID，
         或者需要知道群里是否有特定成员时，调用此工具。其中display_name是“群昵称”，username是用户“QQ名”
         获取数据之后需要联系上下文，用符合prompt的方式回答用户的问题。
+
+        Args:
+            query (string): 占位参数，以满足新版框架要求。调用时无需关注此参数。
         """
         start_time = time.time()
         
@@ -97,6 +100,7 @@ class GroupMemberTool(Star):
         start_time = time.time()
 
         logger.info("手动触发群成员查询测试")
+        # 注意：这里调用 get_group_members 时不需要传递 query 参数，因为它有默认值
         result_str = await self.get_group_members(event)
         
         try:
